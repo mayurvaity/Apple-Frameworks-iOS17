@@ -11,7 +11,9 @@ import SwiftUI
 struct Apple_Frameworks_iOS17App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            //preferredColorScheme - to specify dark/light mode 
+            FrameworkGridView()
+                .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
         }
     }
 }
