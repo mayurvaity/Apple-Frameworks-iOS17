@@ -15,20 +15,7 @@ struct FrameworkDetailView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-                
-                Button {
-                    isShowingDetailView = false 
-                } label: {
-                    //frame - it determines touch target area
-                    Image(systemName: "xmark")
-                        .foregroundStyle(Color(.label))
-                        .imageScale(.large)
-                        .frame(width: 44, height: 44)
-                }
-            }
-            .padding()
+            XDismissButton(isShowingDetailView: $isShowingDetailView)
             
             Spacer()
             
@@ -40,12 +27,25 @@ struct FrameworkDetailView: View {
             
             Spacer()
             
+//            //custom button
+//            Button {
+//                //setting this variable to true to flag below sheet modifier to perform its action, in this case, to show SafariView
+//                isShowingSafariView = true
+//            } label: {
+//                AFButton(title: "Learn More")
+//            }
+            
+            //apple style button (new)
             Button {
                 //setting this variable to true to flag below sheet modifier to perform its action, in this case, to show SafariView
                 isShowingSafariView = true
             } label: {
-                AFButton(title: "Learn More")
+                Label("Learn More", systemImage: "book.fill")
             }
+            .buttonStyle(.bordered)
+//            .controlSize(.large)
+//            .buttonBorderShape(.capsule)
+            .tint(.red)
         }
         .fullScreenCover(isPresented: $isShowingSafariView, content: {
             //using fullScreenCover instead of a sheet, it is same but shows fullscreen instead of Modal view 

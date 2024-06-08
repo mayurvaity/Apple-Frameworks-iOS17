@@ -12,18 +12,12 @@ struct FrameworkGridView: View {
     //StateObject - to retain value of object even when view object gets destroyed 
     @StateObject var viewModel = FrameworkGridViewModel()
     
-    //.flexible - to make sure it adopts to any grid dimensions
-    //no if GridItem specified in the array determine no of columns (in this case 3)
-    let columns: [GridItem] = [GridItem(.flexible()),
-                               GridItem(.flexible()),
-                               GridItem(.flexible())]
-    
     var body: some View {
         NavigationStack {
             //sheet - to show a Modal view (as specified) based on a boolean variable value
             //navigationTitle - to assign a title to scrollview
             ScrollView {
-                LazyVGrid(columns: columns) {
+                LazyVGrid(columns: viewModel.columns) {
                     //as Framework struct conforms to Identifiable, it (below ForEach) will use id created in it using Identifiable protocol without having to specify it
                     ForEach(MockData.frameworks) { framework in
                         FrameworkTitleView(framework: framework)
@@ -54,25 +48,4 @@ struct FrameworkGridView: View {
         .preferredColorScheme(.dark)
 }
 
-struct FrameworkTitleView: View {
-    
-    let framework: Framework
-    
-    var body: some View {
-        //padding - to add padding around vstack
-        VStack {
-            Image(framework.imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 90, height: 90)
-            //scaledToFit - to adjust the font size if needed
-            //minimumScaleFactor - minimum font scaling
-            Text(framework.name)
-                .font(.title2)
-                .fontWeight(.semibold)
-                .scaledToFit()
-                .minimumScaleFactor(0.6)
-        }
-        .padding()
-    }
-}
+
