@@ -8,8 +8,16 @@
 import SwiftUI
 
 //if u r not gonna subclass ur class, make it final
+//conform to ObservableObject to broadcast its changes 
 final class FrameworkGridViewModel: ObservableObject {
     
-    var selectedFramework: Framework?
-    
+    var selectedFramework: Framework? {
+        //every time selectedFramework changes below didSet code gets executed
+        didSet {
+            isShowingDetailView = true
+        }
+    }
+    //varaible to maintain if to show detail view or not 
+    //@Published - makes it obeservable throught the app, wherever it is used, for change of its value 
+    @Published var isShowingDetailView = false
 }

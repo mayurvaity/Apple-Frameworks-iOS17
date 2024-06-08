@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FrameworkGridView: View {
     
+    //StateObject - to retain value of object even when view object gets destroyed 
     @StateObject var viewModel = FrameworkGridViewModel()
     
     //.flexible - to make sure it adopts to any grid dimensions
@@ -19,6 +20,8 @@ struct FrameworkGridView: View {
     
     var body: some View {
         NavigationStack {
+            //sheet - to show a Modal view (as specified) based on a boolean variable value
+            //navigationTitle - to assign a title to scrollview
             ScrollView {
                 LazyVGrid(columns: columns) {
                     //as Framework struct conforms to Identifiable, it (below ForEach) will use id created in it using Identifiable protocol without having to specify it
@@ -26,11 +29,19 @@ struct FrameworkGridView: View {
                         FrameworkTitleView(framework: framework)
                             .onTapGesture {
                                 print("Tapped \(framework.id)")
+                                viewModel.selectedFramework = framework
                             }
                     }
                 }
             }
             .navigationTitle("🍎 Frameworks")
+            .sheet(isPresented: $viewModel.isShowingDetailView) {
+                //when above parameter isPresented is set to true the sheet shows the Modal view, when set to false sheet dismisses Modal view - needs an binding variable, $ makes it binding 
+                //to call method which will show detail view with values of selected framework
+                FrameworkDetailView(
+                    framework: viewModel.selectedFramework ?? MockData.sampleFramework,
+                    isShowingDetailView: $viewModel.isShowingDetailView)
+            }
         }
         
     }
