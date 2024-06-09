@@ -13,7 +13,7 @@ struct FrameworkGridView: View {
     @StateObject var viewModel = FrameworkGridViewModel()
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             //sheet - to show a Modal view (as specified) based on a boolean variable value
             //navigationTitle - to assign a title to scrollview
             ScrollView {
