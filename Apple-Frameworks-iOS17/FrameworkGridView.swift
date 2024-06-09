@@ -13,28 +13,25 @@ struct FrameworkGridView: View {
     @StateObject var viewModel = FrameworkGridViewModel()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             //sheet - to show a Modal view (as specified) based on a boolean variable value
             //navigationTitle - to assign a title to scrollview
             ScrollView {
                 LazyVGrid(columns: viewModel.columns) {
                     //as Framework struct conforms to Identifiable, it (below ForEach) will use id created in it using Identifiable protocol without having to specify it
                     ForEach(MockData.frameworks) { framework in
-                        FrameworkTitleView(framework: framework)
-                            .onTapGesture {
-                                print("Tapped \(framework.id)")
-                                viewModel.selectedFramework = framework
-                            }
+                        //to create a link around clickable title view and also pass value of framework, to be used in destination
+                        NavigationLink(value: framework) {
+                            FrameworkTitleView(framework: framework)
+                        }
                     }
                 }
             }
             .navigationTitle("🍎 Frameworks")
-            .sheet(isPresented: $viewModel.isShowingDetailView) {
-                //when above parameter isPresented is set to true the sheet shows the Modal view, when set to false sheet dismisses Modal view - needs an binding variable, $ makes it binding 
-                //to call method which will show detail view with values of selected framework
-                FrameworkDetailView(
-                    framework: viewModel.selectedFramework ?? MockData.sampleFramework,
-                    isShowingDetailView: $viewModel.isShowingDetailView)
+            .navigationDestination(for: Framework.self) { framework in
+                //gets above variable value from NavigationLink and stored in var framework, to be used below
+                //then with this value, calling detail view below 
+                FrameworkDetailView(framework: framework)
             }
         }
         
