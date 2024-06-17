@@ -18,6 +18,7 @@
 		0D2BBAF02C135DDF00844007 /* FrameworkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2BBAEF2C135DDF00844007 /* FrameworkDetailView.swift */; };
 		0D2BBAF22C13608200844007 /* AFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2BBAF12C13608200844007 /* AFButton.swift */; };
 		0D2BBAF42C13678A00844007 /* FrameworkGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2BBAF32C13678A00844007 /* FrameworkGridViewModel.swift */; };
+		0D5791822C20A1E700DF7E7E /* FrameworkDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5791812C20A1E700DF7E7E /* FrameworkDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		0D2BBAEF2C135DDF00844007 /* FrameworkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameworkDetailView.swift; sourceTree = "<group>"; };
 		0D2BBAF12C13608200844007 /* AFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFButton.swift; sourceTree = "<group>"; };
 		0D2BBAF32C13678A00844007 /* FrameworkGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameworkGridViewModel.swift; sourceTree = "<group>"; };
+		0D5791812C20A1E700DF7E7E /* FrameworkDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameworkDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				0D10296D2C12211000CB5FE0 /* Preview Content */,
 				0D2991CE2C14C4D900D46A4E /* FrameworkTitleView.swift */,
 				0D2991D02C14C62000D46A4E /* XDismissButton.swift */,
+				0D5791812C20A1E700DF7E7E /* FrameworkDetailViewModel.swift */,
 			);
 			path = "Apple-Frameworks-iOS17";
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D5791822C20A1E700DF7E7E /* FrameworkDetailViewModel.swift in Sources */,
 				0D1029782C12242700CB5FE0 /* FrameworkGridView.swift in Sources */,
 				0D2BBAF02C135DDF00844007 /* FrameworkDetailView.swift in Sources */,
 				0D2991D12C14C62000D46A4E /* XDismissButton.swift in Sources */,

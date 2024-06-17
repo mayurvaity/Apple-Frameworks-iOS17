@@ -13,7 +13,8 @@ struct Apple_Frameworks_iOS17App: App {
         WindowGroup {
             //preferredColorScheme - to specify dark/light mode 
             FrameworkGridView()
-                .preferredColorScheme(.dark)
         }
     }
 }
+
+

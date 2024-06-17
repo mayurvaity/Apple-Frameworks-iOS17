@@ -9,16 +9,16 @@ import SwiftUI
 
 struct FrameworkDetailView: View {
     
-    var framework: Framework
-    
-    @State private var isShowingSafariView = false
+    //@ObservedObject - we use it when we are initialising this obj from other view (injecting obj)
+    //@StateObject - we use it when we are creating a new obj below
+    @ObservedObject var viewModel: FrameworkDetailViewModel
     
     var body: some View {
         VStack {
             
-            FrameworkTitleView(framework: framework)
+            FrameworkTitleView(framework: viewModel.framework)
             
-            Text(framework.description)
+            Text(viewModel.framework.description)
                 .font(.body)
                 .padding()
             
@@ -34,25 +34,25 @@ struct FrameworkDetailView: View {
             
             //apple style button (new)
             Button {
-                
+                //setting this variable to true to flag below sheet modifier to perform its action, in this case, to show SafariView
+                viewModel.isShowingSafariView = true
             } label: {
                 Label("Learn More", systemImage: "book.fill")
             }
             .buttonStyle(.bordered)
-//            .controlSize(.large)
-//            .buttonBorderShape(.capsule)
+            //            .controlSize(.large)
+            //            .buttonBorderShape(.capsule)
             .tint(.red)
         }
-        .fullScreenCover(isPresented: $isShowingSafariView, content: {
-            //using fullScreenCover instead of a sheet, it is same but shows fullscreen instead of Modal view 
+        .fullScreenCover(isPresented: $viewModel.isShowingSafariView, content: {
+            //using fullScreenCover instead of a sheet, it is same but shows fullscreen instead of Modal view
             //this fullScreenCover observes changes in the variable isShowingSafariView and performs below action
             //to call SafariView using url for selected framework
-            SafariView(url: URL(string: framework.urlString) ?? URL(string: "www.apple.com")! )
+            SafariView(url: URL(string: viewModel.framework.urlString) ?? URL(string: "www.apple.com")! )
         })
     }
 }
 
 #Preview {
-    FrameworkDetailView(framework: MockData.sampleFramework)
-        .preferredColorScheme(.dark)
+    FrameworkDetailView(viewModel: FrameworkDetailViewModel(framework: MockData.sampleFramework))
 }

@@ -31,7 +31,8 @@ struct FrameworkGridView: View {
             .navigationDestination(for: Framework.self) { framework in
                 //gets above variable value from NavigationLink and stored in var framework, to be used below
                 //then with this value, calling detail view below 
-                FrameworkDetailView(framework: framework)
+                FrameworkDetailView(viewModel: FrameworkDetailViewModel(framework: framework))
+//                FrameworkDetailView(framework: framework)
             }
         }
         
