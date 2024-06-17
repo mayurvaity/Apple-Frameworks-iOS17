@@ -24,6 +24,14 @@ struct FrameworkDetailView: View {
             
             Spacer()
             
+            //this is new Link view, it allows to open links in Safari browser, Safari browser opens up & goes to specified link, rather than below implementation where Safari interface opens up within the App (with limited capabilities) 
+            Link(destination: URL(string: viewModel.framework.urlString) ?? URL(string: "www.apple.com")!) {
+                AFButton(title: "Open in Safari")
+            }
+            .padding(.bottom, 20)
+            
+            
+            
 //            //custom button
 //            Button {
 //                //setting this variable to true to flag below sheet modifier to perform its action, in this case, to show SafariView
@@ -43,6 +51,7 @@ struct FrameworkDetailView: View {
             //            .controlSize(.large)
             //            .buttonBorderShape(.capsule)
             .tint(.red)
+            
         }
         .fullScreenCover(isPresented: $viewModel.isShowingSafariView, content: {
             //using fullScreenCover instead of a sheet, it is same but shows fullscreen instead of Modal view
